@@ -58,7 +58,23 @@
       const messagesDiv = document.querySelector(".messages");
       const messageWrapperDiv = document.createElement("div");
       const newMessageDiv = document.createElement("div");
-      newMessageDiv.innerText = message;
+      
+      var today = new Date();
+      var h = today.getHours();
+      var m = today.getMinutes();
+      var s = today.getSeconds();
+      m = checkTime(m);
+      s = checkTime(s);
+      function checkTime(i) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        return i;
+      }
+
+
+      if (writer === "them") { newMessageDiv.innerText = "(" + h + ":" + m + ":" + s + ") " + message; } 
+      else { newMessageDiv.innerText = message + " (" + h + ":" + m + ":" + s + ") "; }
       messageWrapperDiv.classList.add("message");
       messageWrapperDiv.classList.add(writer);
       messageWrapperDiv.appendChild(newMessageDiv);
